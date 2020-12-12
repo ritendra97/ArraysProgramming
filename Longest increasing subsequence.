@@ -1,0 +1,39 @@
+Longest increasing subsequence.
+public class Solution 
+{
+  static int temp[]=new int[7];
+  static int max=Integer.MAX_VALUE;
+	public static int answer(int arr[],int n)
+	{
+		for(int i=0;i<=n;i++)
+		{
+			temp[i]=1;
+			for(int j=0;j<i;j++)
+			{
+				if(arr[i]>arr[j] && temp[i]<=temp[j])
+				{
+					if(max>temp[i])
+						max=temp[i];
+					temp[i]=1+temp[j];
+				}
+			}
+		}
+		return max;
+	}
+    public static void print(int arr[],int n)
+    {
+    	for(int i=0;i<n;i++ )
+    	{
+    		if(temp[i]>1)
+    		    System.out.println(arr[i]);
+    	}
+    }
+	public static void main(String[] args) 
+	{
+		int arr[]= {5,8,7,1,9};
+		int n=arr.length-1;
+		//System.out.println(answer(arr,n));
+		System.out.println(answer(arr,n));
+		print(arr,n+1);
+	}
+}
