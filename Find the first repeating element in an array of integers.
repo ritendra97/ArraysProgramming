@@ -1,0 +1,24 @@
+Find the first repeating element in an array of integers.
+import java.util.*;
+public class Solution 
+{
+	static int min=-1;
+	static int  printFirstRepeating(int arr[],int n)
+	{
+		HashSet<Integer> map = new HashSet<>();
+		for(int i=n-1;i>=0;i--)
+		{
+			if(map.contains(arr[i]))
+				min=i+1;
+			else
+				map.add(arr[i]);
+		}
+		return min;
+	}
+	public static void main(String[] args) 
+	{
+		int arr[] = {10, 5, 3, 4, 3, 5, 6};
+		int n= arr.length;
+		System.out.println(printFirstRepeating(arr,n));
+	}
+}
