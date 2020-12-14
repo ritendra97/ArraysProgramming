@@ -1,0 +1,34 @@
+//Count pairs with given sum
+import java.util.*;
+public class Solution 
+{
+	
+	static int getPairsCount(int[] arr, int n, int k) 
+    {
+		int ans=0;
+		HashMap<Integer,Integer> hm = new HashMap<>();
+		for(int i=0;i<n;i++)
+		{
+			if (!hm.containsKey(arr[i]))
+                hm.put(arr[i], 0);
+ 
+            hm.put(arr[i], hm.get(arr[i]) + 1);
+		}
+		for(int i=0;i<n;i++)
+		{
+	        if(hm.get(k-arr[i])!=null)
+	        {
+	        	ans+=hm.get(k-arr[i]);
+	        }
+	        if(k-arr[i]==arr[i])
+	        	ans--;
+		}
+		return ans/2;
+    }
+	public static void main(String[] args) 
+	{
+		int arr[] = {1,5,7,1};
+		int n=arr.length;
+		System.out.println(getPairsCount(arr,n,6));
+	}
+}
