@@ -1,0 +1,38 @@
+Frequencies of Limited Range Array Elements
+import java.util.*;
+public class Solution 
+{
+	static void frequencycount(int arr[],int n)
+	{ 
+	    Map<Integer,Integer> map = new HashMap<Integer,Integer>();
+	    for(int i =0;i<n;i++)
+	    {
+	    	if(map.containsKey(arr[i]))
+	    	{
+	    		int sum = map.get(arr[i]);
+	    		map.put(arr[i], sum+1);
+	    	}
+	    	else
+	    	{
+	    		map.put(arr[i], 1);
+	    	}
+	    }
+	    for(int i=1;i<=arr.length;i++)
+	    {
+	    	if(map.containsKey(i))
+	    	{
+	    		int ans = map.get(i);
+	    		System.out.println(i +" occuring "+ ans+" times");
+	    	}
+	    	else
+	    	{
+	    		System.out.println(i +" occuring "+ 0 +" times");
+	    	}
+	    }
+	}
+	public static void main(String[] args) 
+	{
+		int arr[] = {2,3,2,3,5};
+		frequencycount(arr,5);
+	}
+}
