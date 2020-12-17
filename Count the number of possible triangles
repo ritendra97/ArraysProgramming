@@ -1,0 +1,27 @@
+public class Solution 
+{
+	static int counttriangle(int arr[],int n)
+	{
+		int count=0;
+		for(int i=0;i<n;i++)
+		{
+			int k =i+2;
+			for(int j=i+1;j<n;j++)
+			{
+				while(k<n && arr[i]+arr[j]>arr[k])
+				{
+					k++;
+				}
+				if(k>j)
+					count+=k-j-1;
+			}
+		}
+		return count;
+	}
+	public static void main(String[] args) 
+	{
+		int arr[]= {10,21,22,100,101,200,300};
+		int n=arr.length;
+		System.out.println(counttriangle(arr,n));
+	}
+}
