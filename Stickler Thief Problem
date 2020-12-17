@@ -1,0 +1,21 @@
+public class Solution 
+{
+	static int FindMaxSum(int arr[], int n)
+    {
+		int inclusive=0;
+		int exclusive=0;
+        for(int i=0;i<n;i++)
+        {
+        	int temp = inclusive;
+        	inclusive = Math.max(inclusive, arr[i]+exclusive);
+        	exclusive = temp;
+        }
+        return inclusive;
+    }
+	public static void main(String[] args) 
+	{
+		int arr[]= {4,1,1,4,2,1};
+		int n=arr.length;
+		System.out.println(FindMaxSum(arr,n));
+	}
+}
