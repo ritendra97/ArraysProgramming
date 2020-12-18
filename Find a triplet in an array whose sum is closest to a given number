@@ -1,0 +1,36 @@
+import java.util.Arrays;
+
+public class Solution 
+{
+	static int threeSumClosest(int array[], int target)
+	{
+		Arrays.sort(array);
+		int closest = Integer.MAX_VALUE;
+		int sum=0;
+		int k;
+		for(k=0;k<array.length-2;k++);
+		{
+			int l=k+1;
+			int j=array.length-1;
+			while(l<j)
+			{
+				sum=array[k]+array[l]+array[j];
+				if (Math.abs(target - sum) < closest) 
+	            {
+	                closest = sum;
+	            }
+				if(sum>target)
+					j--;
+				else
+					l++;
+			}
+		}
+		return closest;
+	}
+	public static void main(String[] args) 
+	{
+		int array[] = {-1,2,1,-4};
+		System.out.println(threeSumClosest(array,1));
+	}
+}
+ 
