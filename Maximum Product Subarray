@@ -1,0 +1,23 @@
+public class Main
+{
+    static int maxproduct(int arr[],int n)
+    {
+        int max_overall=arr[0];
+        int max_ending=arr[0];
+        int min_ending=arr[0];
+        for(int i=1;i<n;i++)
+        {
+            int temp=max_ending;
+            max_ending = Math.max(arr[i],Math.max(arr[i],arr[i]*min_ending));
+            min_ending = Math.min(arr[i],Math.min(arr[i]*temp,arr[i]*min_ending));
+            max_overall = Math.max(max_overall,max_ending);
+        }
+        return max_overall;
+    }
+	public static void main(String[] args) 
+	{
+	    int arr[] ={-3,2,-4,6,0,-8,5};
+	    int n = arr.length;
+	    System.out.println(maxproduct(arr,n));
+	}
+}
