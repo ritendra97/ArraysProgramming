@@ -1,0 +1,17 @@
+//facing the sun
+class Solution {
+    int countBuildings(int h[], int n) 
+    {
+        int target =h[0];
+        int count=1;
+        for(int i=1;i<n;i++)
+        {
+            if(h[i]>target)
+            {
+                count++;
+                target=h[i];
+            }
+        }
+        return count;
+    }
+}
