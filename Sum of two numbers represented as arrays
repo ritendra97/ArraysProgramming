@@ -1,0 +1,42 @@
+//Sum of two numbers represented as arrays
+import java.util.*;
+public class Solution 
+{
+	static ArrayList<Integer> findSum(int a[], int b[]) 
+    {
+		ArrayList<Integer> sum = new ArrayList<Integer>();
+		int i=a.length-1;
+		int j=b.length-1;
+		int k = i>j?i:j;
+		int carry=0;
+		int sum1=0;
+		int ans=0;
+		while(k>=0)
+		{
+			ans=carry;
+			if(i>=0)
+				ans+=a[i];
+			if(j>=0)
+				ans+=b[j];
+			carry = ans/10;
+			ans=ans%10;
+			sum.add(ans);
+			k--;
+			j--;
+			i--;
+		}
+		if(carry!=0)
+		{
+			sum.add(carry);
+		}
+		Collections.reverse(sum);
+		return sum;
+    }
+	public static void main(String[] args) 
+	{
+		int a[] = {2, 2, 7, 5, 3, 3};
+		int b[] = {4, 3, 3, 8};
+		System.out.println(findSum(a,b));
+	}
+}
+// Here we are using ArrayList we can use newly created arry where we don't have to revere it.
