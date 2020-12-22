@@ -1,0 +1,29 @@
+//Maximize Number of 1's 
+public class Solution 
+{
+	static int findZeroes(int arr[], int n, int m) 
+	{
+		int zerocount=0;
+		int consecutiveone =0;
+		int start =0;
+		for(int i=0;i<n;i++)
+		{
+			if(arr[i]==0)
+				zerocount++;
+			while(zerocount>m)
+			{
+				if(arr[start]==0)
+					zerocount--;
+				start++;
+			}
+			consecutiveone = Math.max(consecutiveone, i-start+1);
+		}
+		return consecutiveone;
+    }
+	public static void main(String[] args) 
+	{
+		int arr[] = {1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1};
+		int n=arr.length;
+		System.out.println(findZeroes(arr,n,2));
+	}
+}
