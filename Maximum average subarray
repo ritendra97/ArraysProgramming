@@ -1,0 +1,37 @@
+//Maximum average subarray
+public class Solution 
+{
+	static int findMaxAverage(int[] arr, int n, int k) 
+    {
+        int i=0;
+        int j=0;
+        int sum=0;
+        int ws=0;
+        int maxsum=Integer.MIN_VALUE;
+        while(j<n)
+        {
+        	ws+=1;
+        	sum=sum+arr[j];
+        	if(j<n)
+        		j++;
+        	if(ws>=k)
+        	{
+        		int ans=sum/ws;
+        		if(maxsum<ans)
+        		{
+        			maxsum=ans;
+        		}
+        	    sum=sum-arr[i];
+        		i++;
+        		ws=k-1;
+        	}
+        }
+        return maxsum;
+    }
+	public static void main(String[] args) 
+	{
+		int arr[] = {1, 12, -5, -6, 50, 3};
+		int n=arr.length;
+		System.out.println(findMaxAverage(arr,n,4));
+	}
+}
