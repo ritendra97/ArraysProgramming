@@ -1,0 +1,24 @@
+import java.util.*;
+public class Solution 
+{
+	static boolean checkDuplicatesWithinK(int[] arr, int n, int k) 
+	{
+		HashSet<Integer> ans = new HashSet<Integer>();
+		for(int i=0;i<n;i++ )
+		{
+			if(ans.contains(arr[i]))
+				return true;
+			ans.add(arr[i]);
+			if(i>=k)
+				ans.remove(arr[i-k]);
+		}
+		return false;
+    }
+	public static void main(String[] args) 
+	{
+		int arr[] = {1, 2, 3, 1, 4, 5};
+		int n = arr.length;
+		int k = 3;
+		System.out.println(checkDuplicatesWithinK(arr,n,k));
+	}
+}
