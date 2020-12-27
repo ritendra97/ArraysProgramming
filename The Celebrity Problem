@@ -1,0 +1,52 @@
+//The Celebrity Problem
+import java.util.*;
+
+public class Solution 
+{
+	static int MATRIX[][] = { { 0, 0, 1, 0 }, 
+            { 0, 0, 1, 0 }, 
+            { 0, 0, 0, 0 },  
+            { 0, 0, 1, 0 } }; 
+	static boolean knows(int a,int b)
+	{
+		boolean res = (MATRIX[a][b]==1)?true:false;
+		return res;
+	}
+	static int findCelebrity() 
+	{
+		Stack<Integer> st = new Stack<>();
+		for(int i=0;i<MATRIX.length;i++)
+		{
+			st.push(i);
+		}
+		while(st.size()>=2)
+		{
+			int i =st.pop();
+			int j =st.pop();
+			if(MATRIX[i][j]==1)
+			{
+				//if i know j than i is not celebrity
+				st.push(j);
+			}
+			else
+			{
+				//if i does not know j than j is not the celebrity
+				st.push(i);
+			}
+		}
+		int pot = st.pop();
+		for(int i=0;i<MATRIX.length;i++)
+		{
+			if(i!=pot)
+			{
+				if(MATRIX[i][pot]==0 || MATRIX[pot][i]==1)
+					return 0;
+			}
+		}
+		return pot;
+	}
+	public static void main(String[] args)
+	{
+		System.out.println(findCelebrity());
+	}
+}
