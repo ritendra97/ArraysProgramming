@@ -1,0 +1,46 @@
+//K’th Smallest/Largest Element in Unsorted Array
+public class Solution 
+{
+	public static int partition(Integer[] arr, int l,int r) 
+    {
+		int pivot=arr[r];
+		int pindex=l;
+		for(int i=l;i<r;i++)
+		{
+			if(arr[i]<=pivot)
+			{
+				int temp=arr[i];
+				arr[i]=arr[pindex];
+				arr[pindex]=temp;
+				pindex=pindex+1;
+			}
+		}
+		int temp=arr[pindex];
+		arr[r]=arr[pindex];
+		arr[r]=temp;
+		return pindex;
+    }
+	public static int kthSmallest(Integer[] arr, int l, int r, int k) 
+    {  
+        if (k > 0 && k <= r - l + 1) 
+        { 
+            int pos = partition(arr, l, r); 
+            System.out.println(pos);
+            if (pos - l == k - 1) 
+                  return arr[pos]; 
+
+            if (pos - l > k - 1) 
+                  return kthSmallest(arr, l, pos - 1, k); 
+ 
+            return kthSmallest(arr, pos + 1, r, k - pos + l - 1); 
+          } 
+          return Integer.MAX_VALUE; 
+    } 
+	public static void main(String[] args) 
+	{
+        Integer arr[] = new Integer[] { 12, 3, 5, 7, 4, 19, 26 }; 
+        int k = 3;
+        
+        System.out.print("K'th smallest element is " + kthSmallest(arr, 0, arr.length - 1, k));
+	}
+}
