@@ -1,0 +1,93 @@
+//Subarray with given sum-Dealing with negative signs and positive signs
+//Dealing with positive signs only
+import java.util.*;
+public class Solution 
+{
+	static ArrayList<Integer> subarraySum(int n, int s, int[] m) 
+    {
+		ArrayList<Integer> ans = new ArrayList<Integer>();
+        int i=0;
+        int j=0;
+        int sum=0;
+        while(j<m.length)
+        {
+        	sum+=m[j];
+        	if(j<n)
+        		j++;
+        	if(sum==s)
+        	{
+        		ans.add(i+1);
+        		ans.add(j);
+        		sum=sum-m[i];
+        		i++;
+        	}
+        	else if(sum>s)
+        	{
+        		sum=sum-m[i];
+        		i++;
+        		if(sum==s)
+        		{
+        			ans.add(i+1);
+            		ans.add(j);
+        		}
+        	}
+        }
+        if(ans.isEmpty())
+        {
+        	ans.add(-1);
+        }
+        return ans;
+    }
+	public static void main(String[] args) 
+	{
+		int m[] = {15, 2, 4, 8, 9, 5, 10, 23};
+		int n=m.length;
+		int s=12;
+		System.out.print(subarraySum(n,s,m));
+	}
+
+}
+// Handles Negative Numbers
+import java.util.*;
+public class Solution 
+{
+	public static void subArraySum(int[] arr, int n, int sum) 
+	{
+		int curr_sum= 0;
+		int start =0;
+		int end =-1;
+		HashMap<Integer, Integer> map = new HashMap<Integer,Integer>();
+		for(int i =0;i<n;i++)
+		{
+			curr_sum+=arr[i];
+			if(curr_sum-sum==0)
+			{
+				start=0;
+				end =i;
+				break;
+			}
+			if(map.containsKey(curr_sum-sum))
+			{
+				start = map.get(curr_sum-sum)+1;
+				end=i;
+				break;
+			}
+			map.put(curr_sum,i);
+		}
+		if (end == -1) 
+		{ 
+            System.out.println("No subarray with given sum exists"); 
+        } 
+		else 
+		{ 
+            System.out.println("Sum found between indexes "+ start + " to " + end);
+        }
+	}
+	public static void main(String[] args) 
+	{
+		int[] arr = {10, 2, -2, -20, 10}; 
+        int n = arr.length; 
+        int sum = -10; 
+        subArraySum(arr, n, sum);
+	}
+}
