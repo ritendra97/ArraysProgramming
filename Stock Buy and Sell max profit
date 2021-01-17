@@ -1,0 +1,23 @@
+//Stock Buy and Sell
+import java.util.*;
+public class Solution 
+{
+	static int StocksellandBuy(int arr[], int n)
+	{
+		int diff=0;
+		for(int i=1;i<n;++i)
+		{
+	        if(arr[i]>arr[i-1])
+	        {
+	        	diff=diff+(arr[i]-arr[i-1]);
+	        }
+		}
+		return diff;
+	}
+	public static void main(String[] args) 
+	{
+		int arr[] = {7,1,5,3,6,4};
+		int n=arr.length;
+		System.out.print(StocksellandBuy(arr,n));
+	}
+}
