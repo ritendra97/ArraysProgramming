@@ -1,0 +1,47 @@
+//insertion sort recursionaway
+import java.util.*;
+//Insertion sort using recursion
+public class Recursion 
+{
+	static int min_index(int arr[],int s,int e)
+	{
+		int min_index = 0;
+		int sum = Integer.MAX_VALUE; 
+		for(int i=s;i<e;i++)
+		{
+			if(sum>arr[i])
+			{
+				sum=arr[i];
+				min_index=i;
+			}
+		}
+		return min_index;
+	}
+	static void insertionsort(int arr[],int start,int end)
+	{
+		if(start>=end)
+		{
+			return;
+		}
+			int min_index = min_index(arr,start,end);
+			
+			int temp = arr[start];
+			arr[start]=arr[min_index];
+			arr[min_index]=temp;
+			
+			insertionsort(arr,start+1,end);
+	}
+	static void printarr(int arr[])
+	{
+		for(int n:arr)
+		{
+			System.out.print(n+" ");
+		}
+	}
+	public static void main(String[] args) 
+	{
+		int arr[] = {6,5,3,1,8,7,2,4};
+		insertionsort(arr,0,arr.length);
+		printarr(arr);
+	}
+}
