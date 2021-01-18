@@ -1,0 +1,35 @@
+//Trapping rain water
+package water;
+
+public class WaterTrapping 
+{
+	static void water(int nums[],int n)
+	{
+		int maxl[]=new int[n];
+		int maxr[]=new int[n];
+		int water[]=new int[n];
+		int sum=0;
+		maxl[0]=nums[0];
+		for(int i=1;i<n;i++)
+		{
+			maxl[i]=Math.max(maxl[i-1], nums[i]);
+		}
+		maxr[n-1]=nums[n-1];
+		for(int i=n-2;i>=0;i--)
+		{
+			maxr[i]=Math.max(maxr[i+1], nums[i]);
+		}
+		for(int i=0;i<n;i++)
+		{
+			water[i]=(Math.min(maxl[i],maxr[i])-nums[i]);
+			sum=sum+water[i];
+		}
+		System.out.println("The sum is: "+sum);
+	}
+	public static void main(String[] args) 
+	{
+		int nums[]= {0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
+		int n=nums.length;
+		water(nums,n);
+	}
+}
