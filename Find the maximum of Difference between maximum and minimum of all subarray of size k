@@ -1,0 +1,74 @@
+//Find the maximum of Difference between maximum and minimum of all subarray of size k
+import java.util.*;
+public class Solution 
+{
+	static int differenceiofmaxandmin(int arr[],int k)
+	{
+		int i=0;
+		int j=0;
+		int max_e=0;
+		int min_e=0;
+		int final_max=0;
+		Deque<Integer> max = new LinkedList<Integer>();
+		Deque<Integer> min = new LinkedList<Integer>();
+		for(;i<k;i++)
+		{
+			while(!max.isEmpty() && arr[max.peekLast()]<=arr[i] )
+			{
+				max.removeLast();
+			}
+			max.addLast(i);
+		}
+		
+		for(;j<k;j++)
+		{
+			while(!min.isEmpty() && arr[min.peekLast()]>=arr[j] )
+			{
+				min.removeLast();
+			}
+			min.addLast(j);
+		}
+		while(i<arr.length && j<arr.length)
+		{
+			max_e=max.peekFirst();
+			min_e=min.peekFirst();
+			if(final_max<arr[max_e]-arr[min_e])
+			{
+				final_max =arr[max_e]-arr[min_e];
+			}
+			while(!max.isEmpty() && max.peekLast()<=i-k )
+			{
+				max.removeFirst();
+			}
+			while(!min.isEmpty() && min.peekLast()<=j-k)
+			{
+				min.removeFirst();
+			}
+			while(!max.isEmpty() && arr[max.peekLast()]<=arr[i] )
+			{
+				max.removeLast();
+			}
+			max.addLast(i);
+			while(!min.isEmpty() && arr[min.peekLast()]>=arr[j] )
+			{
+				min.removeLast();
+			}
+			min.addLast(j);
+			j++;
+			i++;
+		}
+		max_e=max.peekFirst();
+		min_e=min.peekFirst();
+		if(final_max<arr[max_e]-arr[min_e])
+		{
+			final_max =arr[max_e]-arr[min_e];;
+		}
+		return final_max;
+	}
+	public static void main(String[] args) 
+	{
+		int arr[] = {3, 2, 4, 5, 6, 1, 9};
+		int K = 3;
+		System.out.println(differenceiofmaxandmin(arr,K));
+	}
+}
