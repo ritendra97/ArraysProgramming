@@ -1,0 +1,43 @@
+import java.util.*;
+public class Graph 
+{
+	public static int magicalindex(int arr[],int n)
+	{
+		int cnt=0;
+		int parent[] = new int[n+1];
+		boolean visit[] = new boolean[n+1];
+		for(int i=0;i<n+1;i++)
+		{
+			parent[i]=-1;
+			visit[i]=false;
+		}
+		for(int i=0;i<n;i++)
+		{
+			int j=i;
+			if(parent[j]==-1)
+			{
+				while(parent[j]==-1)
+				{
+					parent[j]=i;
+					j=(j+arr[j]+1)%n;
+				}
+				if(parent[j]==i)
+				{
+					while(visit[j]==false)
+					{
+						visit[j]=true;
+						cnt++; 
+	                    j = (j + arr[j] + 1) % n; 
+					}
+				}
+			}
+		}
+		return cnt;
+	}
+	public static void main(String[] args) 
+	{
+		int []A = { 1, 1, 1, 1 }; 
+        int n = A.length; 
+        System.out.print(magicalindex(A, n));
+	}
+}
