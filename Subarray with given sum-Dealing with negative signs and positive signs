@@ -91,3 +91,106 @@ public class Solution
         subArraySum(arr, n, sum);
 	}
 }
+//Find subarray with given sum(only Positive case handle)
+import java.util.*;
+// no of times a sorted array rotated
+public class BinarySearch 
+{
+	public static void subArraySum(int[] arr, int n, int sum) 
+	{
+		int i=0;
+		int j=0;
+		int target_sum=0;
+		while(true)
+		{
+			boolean f1 = false;
+			boolean f2 = false;
+			while(i<arr.length && target_sum<=sum)
+			{
+				f1=true;
+				target_sum+=arr[i];
+				i++;
+				if(target_sum==sum)
+				{
+					System.out.println(j+" "+(i-1));
+					break;
+				}
+				
+			}
+			while(j<i && j<arr.length)
+			{
+				f2=true;
+				target_sum-=arr[j];
+				j++;
+				if(target_sum==sum)
+				{
+					System.out.println(j+" "+(i-1));
+					break;
+				}
+				
+			}
+			
+			if(f1==false && f2==false)
+				break;
+		}
+	}
+	public static void main(String[] args) 
+	{
+		int[] arr = {1, 4, 20, 3, 10, 5}; 
+        int n = arr.length; 
+        int sum = 33; 
+        subArraySum(arr, n, sum);
+	}
+}
+
+//Find subarray with given sum(Only negative case handle)
+import java.util.*;
+// no of times a sorted array rotated
+public class BinarySearch 
+{
+	public static void subArraySum(int[] arr, int n, int sum) 
+	{
+		int i=0;
+		int j=0;
+		int target_sum=0;
+		while(true)
+		{
+			boolean f1 = false;
+			boolean f2 = false;
+			while(i<arr.length)
+			{
+				f1=true;
+				target_sum+=arr[i];
+				i++;
+				if(target_sum==sum)
+				{
+					System.out.println(j+" "+(i-1));
+					break;
+				}
+				
+			}
+			while(j<i && j<arr.length)
+			{
+				f2=true;
+				target_sum-=arr[j];
+				j++;
+				if(target_sum==sum)
+				{
+					System.out.println(j+" "+(i-1));
+					break;
+				}
+				
+			}
+			
+			if(f1==false && f2==false)
+				break;
+		}
+	}
+	public static void main(String[] args) 
+	{
+		int[] arr = {1, 4, 20, 3, 10, 5}; 
+        int n = arr.length; 
+        int sum = 33; 
+        subArraySum(arr, n, sum);
+	}
+}
