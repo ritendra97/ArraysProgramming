@@ -1,0 +1,36 @@
+//Counting elements in two arrays
+import java.util.*;
+public class Solution 
+{
+	public static int binarySearch(int arr[], int l,int h,int x)
+	{
+		while(l<=h)
+		{
+			int mid = l+(h-l)/2;
+			
+			if(arr[mid]<=x)
+				l=mid+1;
+			else
+				h=mid-1;
+		}
+		return h;
+	}
+	public static void countEleLessThanOrEqual(int arr1[], int arr2[], int m, int n)
+    {
+       Arrays.sort(arr2);
+       for(int i=0;i<arr2.length;i++)
+       {
+    	   int index = binarySearch(arr2,0,n-1,arr1[i]);
+    	   
+    	   System.out.println(index+1);
+       }
+    }
+	public static void main(String[] args) 
+	{
+		int arr1[] = {1, 2, 3, 4, 7, 9};
+		int arr2[] = {0, 1, 2, 1, 1, 4};
+		int m = arr2.length;
+		int n = arr1.length;
+		countEleLessThanOrEqual(arr1,arr2, m,n);
+	}
+}
