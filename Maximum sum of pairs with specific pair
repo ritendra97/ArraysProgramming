@@ -1,0 +1,26 @@
+import java.util.*;
+public class Solution 
+{
+	public static int maxCount(int arr[],int k)
+	{
+		int max_sum=0;
+		int n= arr.length;
+		for(int i=n-1;i>0;--i)
+		{
+			Arrays.sort(arr);
+			if(arr[i]-arr[i-1]<k)
+			{
+				max_sum+=arr[i-1];
+				max_sum+=arr[i];
+				i--;
+			}
+		}
+		return max_sum;
+	}
+	public static void main(String[] args) 
+	{
+		int arr[]= {3,5,10,15,17,12,9};
+		int k=4;
+		System.out.println(maxCount(arr,k));
+	}
+}
