@@ -1,0 +1,74 @@
+//Implement two stacks in an array
+class TwoStack
+{
+
+	int size;
+	int top1,top2;
+	int arr[] = new int[100];
+
+	TwoStack()
+	{
+		size = 100;
+		top1 = -1;
+		top2 = size;
+	}
+}
+public class Solution 
+{
+	static void push1(int x, TwoStack sq)
+    {
+        if(sq.top2==sq.top1+1)
+        {
+        	System.out.println("The stack is overFlow: ");
+        }
+        else
+        {
+        	sq.top1++;
+        	sq.arr[sq.top1]=x;
+        }
+    }
+	static void push2(int x, TwoStack sq)
+    {
+		if(sq.top2==sq.top1+1)
+        {
+        	System.out.println("The stack is overFlow: ");
+        }
+        else
+        {
+        	sq.top2--;
+        	sq.arr[sq.top2]=x;
+        }
+    }
+	static int pop1(TwoStack sq)
+    {
+		if(sq.top1>-1)
+		{
+			int val = sq.arr[sq.top1];
+			sq.top1--;
+	        return val;
+		}
+		else 
+			return -1;
+    }
+	static int pop2(TwoStack sq)
+    {
+		if(sq.top2<sq.size)
+		{
+			int val = sq.arr[sq.top2];
+			sq.top2++;
+	        return val;
+		}
+		else 
+			return -1;
+    }
+	public static void main(String[] args) 
+	{
+		TwoStack sq = new TwoStack();
+		push1(2,sq);
+		push1(3,sq);
+		push2(4,sq);
+		System.out.println(pop1(sq));
+		System.out.println(pop2(sq));
+		System.out.println(pop2(sq));
+	}
+}
