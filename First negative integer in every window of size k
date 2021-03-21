@@ -1,0 +1,41 @@
+//First negative integer in every window of size k
+import java.util.*;
+public class BinarySearch 
+{
+
+	public static void findchar(int arr[],int p)
+	{
+		int j=0;
+		int i=0;
+		boolean flag=false;
+		while(j<arr.length)
+		{
+			if(j-i+1==p)
+			{
+				int k=i;
+				while(k<=j)
+				{
+					if(arr[k]<0 && flag==false)
+					{
+						System.out.print(arr[k]+" ");
+						flag=true;
+					}
+					k++;
+				}
+				i++;
+				if(flag==false)
+				{
+					System.out.print(0+" ");
+				}
+				flag=false;
+			}
+			j++;
+		}
+	}
+	public static void main(String[] args) 
+	{
+		int arr[] = {-8, 2, 3, -6, 10};
+		findchar(arr,2);
+	}
+
+}
