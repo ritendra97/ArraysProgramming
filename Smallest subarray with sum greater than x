@@ -1,0 +1,25 @@
+//Smallest subarray with sum greater than x
+
+class Solution 
+{
+    public static long sb(long a[], long n, long x) 
+    {
+        int len =Integer.MAX_VALUE;
+        long sum=0;
+        int i=0;
+        int j=0;
+        while(j<a.length)
+        {
+            while(sum<=x && j<a.length)
+               sum+=a[j++];
+           
+            while(sum>x && i<a.length)
+            {
+                if(j-i<len)
+                   len = j-i;
+                sum = sum-a[i++];
+            }
+        }
+        return len;
+    }
+}
