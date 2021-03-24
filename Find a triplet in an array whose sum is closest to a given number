@@ -1,5 +1,37 @@
 import java.util.Arrays;
 
+// nive method
+import java.util.*;
+public class Solution 
+{
+	static int threeSumClosest(int[] arr, int target)  
+	{ 
+		int n = arr.length;
+		int closest_sum = Integer.MAX_VALUE;
+		for(int i =0;i<n;i++)
+		{
+			for(int j = i+1;j<n;j++)
+			{
+				for(int k =j+1;k<n;k++)
+				{
+					int a = Math.abs(target-closest_sum);
+					int b = Math.abs(target-(arr[i]+arr[j]+arr[k]));
+					if(a>b)
+						closest_sum = arr[i]+arr[j]+arr[k];
+				}
+			}
+		}
+		return closest_sum;
+	} 
+	public static void main(String[] args) 
+	{
+		int n = 6, target = 2;
+		int arr[] = {-7,9,8,3,1,1};
+		
+		System.out.println(threeSumClosest(arr,target));
+	}
+}
+
 public class Solution 
 {
 	static int threeSumClosest(int array[], int target)
