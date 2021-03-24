@@ -32,37 +32,37 @@ public class Solution
 	}
 }
 
+import java.util.*;
 public class Solution 
 {
-	static int threeSumClosest(int array[], int target)
-	{
-		Arrays.sort(array);
-		int closest = Integer.MAX_VALUE;
-		int sum=0;
-		int k;
-		for(k=0;k<array.length-2;k++);
+	static int threeSumClosest(int[] arr, int target)  
+	{ 
+		int n = arr.length;
+		Arrays.sort(arr);
+		int closest_sum = Integer.MAX_VALUE;
+		for(int i =0;i<n-2;i++)
 		{
-			int l=k+1;
-			int j=array.length-1;
-			while(l<j)
+			int ptr1 = i+1;
+			int ptr2 = n-1;
+			while(ptr1<ptr2)
 			{
-				sum=array[k]+array[l]+array[j];
-				if (Math.abs(target - sum) < closest) 
-	            {
-	                closest = sum;
-	            }
+				int sum = arr[i]+arr[ptr1]+arr[ptr2];
+				if(Math.abs(target-closest_sum)>Math.abs(target-sum))
+					closest_sum = sum;
 				if(sum>target)
-					j--;
+					ptr2--;
 				else
-					l++;
+					ptr1++;
 			}
 		}
-		return closest;
-	}
+		return closest_sum;
+	} 
 	public static void main(String[] args) 
 	{
-		int array[] = {-1,2,1,-4};
-		System.out.println(threeSumClosest(array,1));
+		int n = 6, target = 1;
+		int arr[] = {-1, 2, 1, -4};
+		
+		System.out.println(threeSumClosest(arr,target));
 	}
 }
- 
+
