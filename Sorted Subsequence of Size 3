@@ -1,0 +1,35 @@
+//Sorted Subsequence of Size 3
+import java.util.*;
+public class Solution 
+{
+	public static void solve(int arr[])
+	{
+		int n = arr.length;
+		int minarr[]  = new int[n];
+		int maxarr[]  = new int[n];
+		
+		minarr[0] = arr[0];
+		for(int i=1;i<n;i++)
+		{
+			minarr[i] = Math.min(arr[i], minarr[i-1]);
+		}
+		
+		maxarr[n-1]  = arr[n-1];
+		for(int i=n-2;i>=0;i--)
+		{
+			maxarr[i] = Math.max(arr[i], maxarr[i+1]);
+		}
+		
+		for(int i=0;i<n;i++)
+		{
+			if(minarr[i]<arr[i] && maxarr[i]>arr[i])
+				System.out.println(minarr[i]+" "+arr[i]+" "+maxarr[i]);
+		}
+	}
+	public static void main(String[] args) 
+	{
+		int arr[] = {1,2,1,1,3};
+		
+		solve(arr);
+	}
+}
