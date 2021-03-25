@@ -1,0 +1,99 @@
+//Swapping pair make sum equal 
+// this is naive method
+import java.util.Arrays;
+
+public class Solution 
+{
+	static void findSwapValues(long A[], int n, long  B[], int m)
+    {
+       int sum1 =0;
+       int sum2 =0;
+       for(int i=0;i<n;i++)
+       {
+    	   sum1+=A[i];
+       }
+       
+       for(int i=0;i<m;i++)
+       {
+    	   sum2+=B[i];
+       }
+       
+       for(int i=0;i<n;i++)
+       {
+    	   for(int j =0;j<m;j++)
+    	   {
+    		   int newsum1 = (int) (sum1-A[i]+B[j]);
+    		   int newsum2 = (int) (sum2-B[j]+A[i]);
+    		   if(newsum1==newsum2)
+    		   {
+    			   System.out.println(A[i]);
+    			   System.out.println(B[j]);
+    		   }
+    	   }
+       }
+    }
+	public static void main(String[] args) 
+	{
+		long A[] = {4, 1, 2, 1, 1, 2};
+		long B[] = {3, 6, 3, 3};
+		int n = A.length;
+		int m = B.length;
+		System.out.println(findSwapValues(A,n,B,m));
+	}
+}
+import java.util.Arrays;
+
+public class Solution 
+{
+	static int findSwapValues(long A[], int n, long  B[], int m)
+    {
+       int sum1 =0;
+       int sum2 =0;
+       Arrays.sort(A);
+       Arrays.sort(B);
+       for(int i=0;i<n;i++)
+       {
+    	   sum1+=A[i];
+       }
+       
+       for(int i=0;i<m;i++)
+       {
+    	   sum2+=B[i];
+       }
+       
+       int difference  = Math.abs(sum1-sum2);
+       
+       int flag =0;
+       int i=0;
+       int j=0;
+      
+       while(i<n && j<m)
+      {
+           if(A[i]+B[j]==difference)
+          {
+                 flag =1;
+                 System.out.print(A[i]+" "+B[j]);
+          }
+          else if(A[i]>B[j])
+          {
+              i++;
+          }
+          else
+          {
+               j++;
+          }
+           
+      }
+      if(flag==0)
+         return 0;
+      return 1;
+    }
+	public static void main(String[] args) 
+	{
+		long A[] = {4, 1, 2, 1, 1, 2};
+		long B[] = {3, 6, 3, 3};
+		int n = A.length;
+		int m = B.length;
+		System.out.println(findSwapValues(A,n,B,m));
+	}
+}
