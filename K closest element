@@ -1,0 +1,106 @@
+//K closest element
+// This below solution is O(n) Time and O(n) Space complexity
+import java.util.*;
+class pair
+{
+	int x;
+	int y;
+	pair(int x,int y)
+	{
+		this.x=x;
+		this.y=y;
+	}
+}
+public class Solution 
+{
+	static PriorityQueue<pair> minheap = new PriorityQueue<pair>(new Comparator<pair>() {
+		public int compare(pair p1,pair p2)
+		{
+			return p1.x-p2.x;
+		}
+	});
+	public static void printKClosest(int[] arr, int n, int k, int x) 
+    {
+        for(int i=0;i<n;i++)
+        {
+        	if(Math.abs(x-arr[i])>0)
+        	{
+        		minheap.add(new pair(Math.abs(x-arr[i]),arr[i]));
+        	}
+        	
+        }
+        
+        for(int i=0;i<k;i++)
+        {
+        	pair p = minheap.remove();
+        	System.out.println(p.y);
+        }
+    }
+	public static void main(String[] args) 
+	{
+		int arr[] = {1, 2, 3, 6, 10};
+		int sum=4;
+		int k=3;
+		int n=arr.length;
+		printKClosest(arr,n,k,sum);
+	}
+}
+// Now i tried to reduce it to O(logn+) Complexity becase given array is in sorted manner
+import java.util.*;
+public class Solution 
+{
+	static ArrayList<Integer> temp = new ArrayList<Integer>();
+	public static ArrayList<Integer> elements(int arr[],int l,int h)
+	{
+		for(int i=l;i<=h;++i)
+		{
+			temp.add(arr[i]);
+		}
+		return temp;
+	}
+	public static ArrayList<Integer> printKClosest(int[] arr, int n, int k, int x) 
+    {
+        if(x<arr[0])
+        {
+        	return elements(arr,0,k-1);
+        }
+        if(x>arr[n-1])
+        {
+        	return elements(arr,n-k,n-1);
+        }
+        
+        int index = Arrays.binarySearch(arr, x);
+        
+        if(index<0)
+        	index = 0;
+        
+        int left = Math.max(0, index-k);
+        int right = Math.min(index+k, n-1);
+         
+        while((right-left+1)>k)
+        {
+        	int absL = Math.abs(arr[left]-x);
+        	int absR = Math.abs(arr[right]-x);
+        	 
+        	if(absL<=absR)
+        	{
+        		--right;
+        	}
+        	else
+        	{
+        		++left;
+        	}
+        }
+         
+        return elements(arr,left,right);
+    }
+	public static void main(String[] args) 
+	{
+		int arr[] = {12, 16, 22, 30, 35, 39, 42, 
+		         45, 48, 50, 53, 55, 56};
+		int sum=35;
+		int k=4;
+		int n=arr.length;
+		System.out.println(printKClosest(arr,n,k,sum));
+	}
+}
