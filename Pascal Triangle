@@ -1,0 +1,30 @@
+import java.util.ArrayList;
+
+public class Solution 
+{
+	public static ArrayList<Integer> ascalringal(int n)
+	{
+		ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>();
+		
+		res.add(new ArrayList<>());
+		if(n==0)
+			return new ArrayList<Integer>();
+		res.get(0).add(1);
+		for(int i=1;i<n;i++)
+		{
+			ArrayList<Integer> curr = new ArrayList<Integer>();
+			curr.add(1);
+			for(int j=1;j<i;j++)
+			{
+				curr.add(res.get(i-1).get(j-1)+res.get(i-1).get(j));
+			}
+			curr.add(1);
+			res.add(curr);
+		}
+		return res.get(n-1);
+	}
+	public static void main(String[] args) 
+	{
+		System.out.println(ascalringal(1));
+	}
+}
