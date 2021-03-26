@@ -1,0 +1,72 @@
+//Three Great candidate
+// this below code doesn't work for certain condition but next to it work perfectily
+import java.util.*;
+public class Solution 
+{
+	public static int maxProduct(int[] arr, int n) 
+    {
+		int max_product=Integer.MIN_VALUE;
+		for(int i=0;i<n;i++)
+		{
+			int ptr1=0;
+			int ptr2=n-1;
+			while(ptr1<ptr2)
+			{
+				if(ptr1!=i && ptr2!=i)
+				{
+					int p = arr[i]*arr[ptr1]*arr[ptr2];
+					if(max_product<p)
+						max_product=p;
+					
+				}
+				ptr1++;
+				ptr2--;
+			}
+		}
+		return max_product;
+    }	
+	public static void main(String[] args) 
+	{
+		int arr[] = {-10, -3, -5, -6, -20};
+		int n = arr.length;
+		System.out.println(maxProduct(arr,n));
+	}
+}
+ if(n<3)
+        {
+            return -1;
+        }
+		int maxA=Integer.MIN_VALUE;
+		int maxB=Integer.MIN_VALUE;
+		int maxC=Integer.MIN_VALUE;
+		
+		int minA=Integer.MAX_VALUE;
+		int minB=Integer.MAX_VALUE;
+		for(int i=0;i<n;i++)
+		{
+			if(arr[i]>maxA)
+			{
+				maxC=maxB;
+				maxB=maxA;
+				maxA=arr[i];
+			}
+			else if(arr[i]>maxB)
+			{
+				maxC=maxB;
+				maxB=arr[i];
+			}
+			else if(arr[i]>maxC)
+			{
+				maxC=arr[i];
+			}
+			if(arr[i]<minA)
+			{
+				minB=minA;
+				minA=arr[i];
+			}
+			else if(arr[i]<minB)
+			{
+				minB=arr[i];
+			}
+		}
+		return Math.max(minA*minB*maxA, maxA*maxB*maxC);
