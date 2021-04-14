@@ -1,4 +1,6 @@
 //Maximum circular subarray sum
+Note that the above algorithm doesn’t work if all numbers are negative e.g., {-1, -2, -3}. 
+It returns 0 in this case. This case can be handled by adding a pre-check to see if all the numbers are negative before running the above algorithm.
 import java.util.*;
 public class Solution 
 {
