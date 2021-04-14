@@ -1,4 +1,30 @@
 //Trapping rain water
+
+
+Take a variable maxWater to store maximum water and initialize it with 0
+For every index of the array, do the following
+Find the highest bar on its left and store it in leftHeight
+Find the highest bar on its right and store it in rightHeight
+Update maxWater with maxWater + min(leftHeight, rightHeight)-arr[i]
+3. Return maxWater
+
+Pseudo Code
+int maxWaterTrapped(int[] height, int size) {
+    int maxWater = 0
+    for (int i = 1 to size-1) {
+        int leftHeight = height[i]
+        for (int j = 0 to i)
+            leftHeight = max(leftHeight, height[j])
+        int rightHeight = height[i]
+        for (int j = i+1 to size) 
+            rightHeight = max(rightHeight, height[j])
+        // Update the maximum water 
+        maxWater = maxWater + (min(leftHeight, rightHeight) - height[i])
+    }
+    return maxWater
+}
+
+
 package water;
 
 public class WaterTrapping 
