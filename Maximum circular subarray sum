@@ -1,0 +1,46 @@
+//Maximum circular subarray sum
+import java.util.*;
+public class Solution 
+{
+	public static int maximumArray(int arr[])
+	{
+		int curr_sum = arr[0];
+		int overall_sum = arr[0];
+		for(int i=1;i<arr.length;i++)
+		{
+			if(curr_sum<0)
+			{
+				curr_sum = arr[i];
+			}
+			else 
+			{
+				curr_sum+=arr[i];
+			}
+			overall_sum = Math.max(overall_sum,curr_sum); 
+		}
+		return overall_sum;
+	}
+	public static int maximumcirculerSubarray(int arr[])
+	{
+		if(arr.length==0)
+			return 0;
+		int x = maximumArray(arr);
+		int sum = 0;
+		for(int i=0;i<arr.length;i++)
+		{
+			sum+=arr[i];
+			arr[i]*=-1;
+		}
+		int z = maximumArray(arr);
+		
+		if(sum+z==0)
+			return x;
+		return Math.max(x, sum+z);
+	}
+	public static void main(String[] args) 
+	{
+		int arr[] = {-1, 40, -14, 7, 6, 5, -4, -1};
+		
+		System.out.println(maximumcirculerSubarray(arr));
+	}
+}
