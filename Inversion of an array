@@ -1,0 +1,67 @@
+import java.util.*;
+public class Solution 
+{
+	public static int mergesort(int arr[],int L[],int R[],int left,int right)
+	{
+		int inv_count=0;
+		int i=0;
+		int j=0;
+		int k=0;
+		while(i<left && j<right)
+		{
+			if(L[i]<R[j])
+			{
+				arr[k++] = L[i++];
+			}
+			else
+			{
+				arr[k++] = R[j++];
+				inv_count+=(left-i);
+			}
+		}
+		while(i<left)
+	    {
+	    	arr[k++]=L[i++];
+	    }
+	    while(j<right)
+	    {
+	    	arr[k++]=R[j++];
+	    }
+		return inv_count;
+	}
+	public static int countinversion(int arr[],int n)
+	{
+		int inv_count=0;
+		if(n<2)
+			return 0;
+		int mid = n/2;
+		
+		int L[] = new int[mid];
+		int R[] = new int[n-mid];
+		
+		for(int i=0;i<mid;i++)
+		{
+			L[i] = arr[i];
+		}
+		
+		for(int i=mid;i<n;i++)
+		{
+			R[i-mid] = arr[i];
+		}
+		
+		inv_count+=countinversion(L,mid);
+		inv_count+=countinversion(R,n-mid);
+		
+		inv_count+=mergesort(arr,L,R,mid,n-mid);
+		
+		return inv_count;
+	}
+	public static void main(String[] args) 
+	{
+		int[] arr = {8, 4, 2, 1};
+		
+		int n  = arr.length;
+		
+		System.out.println(countinversion(arr,n));
+	}
+}
