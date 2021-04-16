@@ -1,6 +1,5 @@
 // ucan solve this using min heap or max heap or sorting of array but the best complesity came with below solution if u want to know complexity go and check file of kth largest 
 // element there i describe it properly
-import java.util.*;
 public class Solution 
 { 
 	public static int partition(int arr[],int low, int high ){
@@ -22,22 +21,22 @@ public class Solution
 		
 		return pindex;
 	}
-    public static int findKthLargest(int[] nums,int low,int high, int k) {
+    public static int kthSmallest(int[] nums,int low,int high, int k) {
     	
     	int result = partition(nums,low,high);
-    	if(result==(high-k))
+    	if(result==k-1)
     		return nums[result];
-    	else if(result<(high-k))
-    		return findKthLargest(nums,result+1,high,k);
+    	else if(result<k-1)
+    		return kthSmallest(nums,result+1,high,k);
     	else
-    		return findKthLargest(nums,low,result-1,k);
+    		return kthSmallest(nums,low,result-1,k);
     
     }
 	public static void main(String[] args) {
-        int arr[] = {7, 4, 6, 3, 9, 1};
-        int k = 2;
+        int arr[] = {7, 10, 4, 3, 20, 15};
+        int k = 4;
         int n = arr.length;
-        System.out.println(findKthLargest(arr,0,n-1,k-1));
+        System.out.println(kthSmallest(arr,0,n-1,k));
 	}
 
 }
