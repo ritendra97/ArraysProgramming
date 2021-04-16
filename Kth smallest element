@@ -1,0 +1,43 @@
+// ucan solve this using min heap or max heap or sorting of array but the best complesity came with below solution if u want to know complexity go and check file of kth largest 
+// element there i describe it properly
+import java.util.*;
+public class Solution 
+{ 
+	public static int partition(int arr[],int low, int high ){
+		int pivote = arr[high];
+		int pindex = low;
+		for(int i=low;i<=high;i++)
+		{
+			if(arr[i]<pivote)
+			{
+				int temp = arr[i];
+				arr[i] = arr[pindex];
+				arr[pindex] = temp;
+				pindex = pindex+1;
+			}
+		}
+		int temp = arr[high];
+		arr[high] = arr[pindex];
+		arr[pindex] = temp;
+		
+		return pindex;
+	}
+    public static int findKthLargest(int[] nums,int low,int high, int k) {
+    	
+    	int result = partition(nums,low,high);
+    	if(result==(high-k))
+    		return nums[result];
+    	else if(result<(high-k))
+    		return findKthLargest(nums,result+1,high,k);
+    	else
+    		return findKthLargest(nums,low,result-1,k);
+    
+    }
+	public static void main(String[] args) {
+        int arr[] = {7, 4, 6, 3, 9, 1};
+        int k = 2;
+        int n = arr.length;
+        System.out.println(findKthLargest(arr,0,n-1,k-1));
+	}
+
+}
