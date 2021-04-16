@@ -1,0 +1,35 @@
+Time complexity comparison
+// first solution O(nlongn) -> Good one first sort the array and than try to find k-1 element
+// using max heap = first it will take O(n) just to build maxheap after that eyou will run a loop o to k-1 than O(Klogn) just to remove the last k element from the heap so overall 
+// complexty will be O(n+O(klogn)) log n just to heppiyfie the method;
+// using minheap = O(k+(n-k+1)log(n-k+1)) here why i am doing this thing first i will run a loop for(int i=0;i<k;i++), just to build a heap it will take O(k) complexity and after that
+// i will compare root of the heap with the upcomming value while traversing the data at that point of time it will take O(n-k+1) time , this is the way to get the complexity.
+
+// best complexity hus to use O(n) time using quick select.
+
+
+
+import java.util.*;
+public class Solution 
+{ 
+    public static int findKthLargest(int[] nums, int k,int n) {
+    	
+        PriorityQueue<Integer> mah = new PriorityQueue<>(Collections.reverseOrder());
+        for(int i=0;i<n;i++)
+        {
+        	mah.add(nums[i]);
+        }
+        for(int i=0;i<k-1;i++)
+        {
+        	mah.remove();
+        }
+        return mah.peek();
+    }
+	public static void main(String[] args) {
+        int arr[] = {3,2,3,1,2,4,5,5,6};
+        int k = 4;
+        int n = arr.length;
+        System.out.println(findKthLargest(arr,k,n));
+	}
+
+}
