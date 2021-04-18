@@ -1,0 +1,50 @@
+//Container With Most Water
+//Nive Approach
+class GFG{
+ 
+public static int maxArea(int[] a)
+{
+ 
+    int Area = 0;
+     
+    for(int i = 0; i < a.length; i++)
+    {
+        for(int j = i + 1; j < a.length; j++)
+        {
+            Area = Math.max(
+                Area, Math.min(a[i], a[j]) *
+                              (j - i));
+        }
+    }
+    return Area;
+}
+
+// O(n) Solution and O(1) Complexity
+import java.util.*;
+public class Solution 
+{
+	public static long maxArea(int A[], int len){
+		
+		long max_water = 0;
+		int i=0;
+		int j=len-1;
+		
+		while(i<j)
+		{
+			max_water = Math.max(max_water, Math.min(A[i],A[j])*(j-i));
+			if(A[i]<A[j])
+				i++;
+			else
+				j--;
+		}
+		return max_water;
+    }
+	public static void main(String[] args) 
+	{
+		int arr[]={1, 5, 4, 3};
+		int n = arr.length;
+		
+		System.out.println(maxArea(arr,n));
+		
+    }
+}
