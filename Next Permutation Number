@@ -1,0 +1,54 @@
+import java.util.*;
+public class Solution 
+{
+    public static List<Integer> nextPermutation(int N, int arr[]){
+        
+    	ArrayList<Integer> ans = new ArrayList<Integer>();
+    	int i =N-2;
+    	for(;i>=0; i--)
+    	{
+    		if(arr[i]<=arr[i+1])
+    			break;
+    	}
+    	
+    	if(i>=0){
+    		int j = N-1;
+    		
+    		while(j>=0 && arr[j]<=arr[i] )
+    			j--;
+    		swap(arr,i,j);
+    	}
+    	
+    	reverse(arr,i+1,N-1);
+    	
+    	for(int k:arr)
+    	{
+    		ans.add(k);
+    	}
+    	return ans;
+    }
+    public static void reverse(int arr[],int i,int j)
+    {
+    	while(i<=j)
+    	{
+    		int temp = arr[i];
+    		arr[i] = arr[j];
+    		arr[j] = temp;
+    		i++;
+    		j--;
+    	}
+    }
+	public static void swap(int arr[],int i,int j)
+	{
+		int temp = arr[i];
+		arr[i] = arr[j];
+		arr[j] = temp;
+	}
+	public static void main(String[] args) {
+
+		int arr[] = {1, 2, 3, 6, 5, 4};
+		int N = arr.length;
+		System.out.println(nextPermutation(N,arr));
+	}
+
+}
