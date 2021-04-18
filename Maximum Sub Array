@@ -1,0 +1,68 @@
+import java.util.*;
+// max in configuration 
+public class Solution 
+{
+	static Vector<Integer> findSubarray(int a[], int n) {
+		
+	   Vector<Integer> v = new Vector<Integer>();
+	   int i =0;
+	   int start =0;
+	   int end=0;
+	   int sum = 0;
+	   int max_sum=-1;
+	   int max_len=-1;
+	   int fs=0;
+	   int fe=0;
+	   
+	   while(i<n)
+	   {
+		   while(i<n && a[i]<0)
+			   i++;
+		   start = i;
+		   
+		   while(i<n-1 && a[i+1]>=0)
+		   {
+			   i++;
+		   }
+		   end = i;
+		   
+		   if(i<n)
+		   {
+			   for(int k=start;k<end+1;k++)
+			   {
+				   sum+=a[i];
+			   }
+		   }
+	
+		   if(max_len<=end-start+1 && max_sum<sum)
+		   {
+			   if(max_sum<sum)
+				   max_sum=sum;
+			   
+			   max_len = end-start+1;
+			   fs = start;
+			   fe = end;
+			   sum=0;
+		   }
+		   i++;
+	   }
+	   for(int k=fs;k<=fe;k++)
+	   {
+		   v.add(a[k]);
+	   }
+	   return v;
+	}
+	public static void main(String[] args) 
+	{
+		int arr[]={-1,-1,-1,-1,-1};
+		int n = arr.length;
+		
+		Vector<Integer> v = findSubarray(arr,n);
+		Iterator<Integer> iter  = v.iterator();
+		while(iter.hasNext())
+		{
+			System.out.println(iter.next());
+		}
+		
+    }
+}
