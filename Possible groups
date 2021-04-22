@@ -1,0 +1,49 @@
+import java.util.*;
+public class Solution {
+	public static int max_element(int arr[]) {
+		
+		int max = Integer.MIN_VALUE;
+		for(int i=0;i<arr.length;i++) {
+			if(arr[i]>max)
+				max=arr[i];
+		}
+		return max;
+	}
+	public static int findgroups(int arr[], int n){
+		
+		int m = max_element(arr);
+		
+		int freq[] = new int[m+1];
+		
+		for(int i=0;i<n;i++) {
+			freq[arr[i]]++;
+		}
+		
+		int ans = 0;
+		
+		ans+=freq[0]*(freq[0]-1)*(freq[0]-2)/6;
+		
+		for(int i=1;i<=m;i++) {
+			ans+=freq[0]*freq[i]*(freq[i]-1)/2;
+		}
+		
+		for(int i=1;2*i<=m;i++) {
+			ans += freq[i] * (freq[i] - 1) / 2 * freq[2 * i];
+		}
+		
+		for (int i = 1; i <= m; i++) {
+            for (int j = i + 1; i + j <= m; j++)
+                ans += freq[i] * freq[j] * freq[i + j];
+        }
+  
+        return ans;
+		
+    }
+	public static void main(String[] args) {
+		 int arr[] = {1, 2, 3, 4, 5};
+	     int n = arr.length;
+	     
+	     System.out.println("Required number of groups are "+findgroups(arr, n));
+	}
+
+}
