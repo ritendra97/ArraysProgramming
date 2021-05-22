@@ -18,7 +18,7 @@ public class Solution
          for(;i<n;i++)
          {
         	 ans.add(arr[dq.peekFirst()]);
-        	 while(!dq.isEmpty() && dq.peekLast()==i-k)
+        	 while(!dq.isEmpty() && dq.peekFirst()<=i-k)
         	 {
         		 dq.removeFirst();
         	 }
