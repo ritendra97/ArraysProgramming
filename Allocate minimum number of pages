@@ -1,0 +1,62 @@
+import java.util.*;
+public class Solution {
+	
+	static boolean isValid(int arr[], int m, int curr_min) {
+        int studentsRequired = 1;
+        int curr_sum = 0;
+     
+        for (int i = 0; i < arr.length; i++)
+        {
+            if (arr[i] > curr_min)
+                return false;
+      
+            if (curr_sum + arr[i] > curr_min)
+            {
+                studentsRequired++;
+      
+                curr_sum = arr[i];
+      
+               if (studentsRequired > m)
+                    return false;
+            }
+      
+            else
+                curr_sum += arr[i];
+         }
+         return true;
+    }
+	
+	static int findPages(int arr[], int n, int student) {
+		
+		long sum=0;
+		
+		for(int i=0;i<n;i++) {
+			sum+=arr[i];
+		}
+		
+		int start = 0;
+		int end = (int)sum;
+		int res = Integer.MAX_VALUE;
+		
+		while(start<=end) {
+			
+			int mid = start+(end-start)/2;
+			
+			if(isValid(arr,student,mid)) {
+				res = mid;
+				end = mid-1;
+				
+			}else {
+				
+				start=mid+1;
+			}
+		}
+		return res;
+    }
+	public static void main(String[] args) {
+		
+		 int arr[] = {12, 34, 67, 90};
+	     int student = 2; 
+	     System.out.println("Minimum number of pages = " +findPages(arr, arr.length, student));
+	}
+}
