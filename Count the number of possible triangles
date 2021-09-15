@@ -3,6 +3,7 @@ public class Solution
 	static int counttriangle(int arr[],int n)
 	{
 		int count=0;
+		Arrays.sort(arr);
 		for(int i=0;i<n;i++)
 		{
 			int k =i+2;
