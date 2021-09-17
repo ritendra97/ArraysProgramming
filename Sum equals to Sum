@@ -1,0 +1,29 @@
+//Sum equals to Sum
+Time Complexity O(n^2)
+Space Complexity O(n^2)
+
+import java.util.*;
+
+public class Practice {
+
+	public static boolean equalSum(int arr[]) {
+		
+		HashSet<Integer> hs = new HashSet<Integer>();
+		
+		for(int i=0;i<arr.length;i++) {
+			for(int j=i;j<arr.length;j++) {
+				int sum = arr[i]+arr[j];
+				if(hs.contains(sum))
+					return true;
+				else
+					hs.add(sum);
+			}
+		}
+		
+		return false;
+	}
+
+	public static void main(String[] args) {
+
+	}
+}
