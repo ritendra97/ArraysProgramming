@@ -45,7 +45,7 @@ public class Solution
 		printKClosest(arr,n,k,sum);
 	}
 }
-// Now i tried to reduce it to O(logn+) Complexity becase given array is in sorted manner
+// Now i tried to reduce it to O(logn + k) Complexity becase given array is in sorted manner
 import java.util.*;
 public class Solution 
 {
