@@ -1,4 +1,37 @@
 //Maximum average subarray
+
+import java.util.Arrays;
+
+public class Practice {
+
+	public static double findmissingNumber(int arr[]) {
+
+		int k = 4;
+		double max_avg = Integer.MIN_VALUE;
+		int sum = 0;
+		int start = 0;
+		
+		for (int i = 0; i < arr.length; i++) {
+			
+			sum += arr[i];
+			if (i - start + 1 == k) {
+				if (sum / k > max_avg)
+					max_avg = sum / k;
+				sum = sum-arr[start++];
+			}
+		}
+
+		return max_avg;
+	}
+
+	public static void main(String[] args) {
+
+		int arr[] = { 1, 12, -5, -6, 50, 3 };
+		System.out.println(findmissingNumber(arr));
+	}
+}
+
+
 public class Solution 
 {
 	static int findMaxAverage(int[] arr, int n, int k) 
