@@ -1,0 +1,40 @@
+//Sum of Lengths of Non-Overlapping SubArrays
+
+Time Complexity O(n)
+Space Complexity O(1)
+
+import java.util.*;
+
+public class Practice {
+
+	static int calculateMaxSumLength(int arr[], int n, int k) {
+		
+		int ans = 0;
+		int count = 0;
+		int flag = 0;
+
+		for (int i = 0; i < n;) {
+			count = 0;
+			flag = 0;
+
+			while (i < n && arr[i] <= k) {
+				count++;
+				if (arr[i] == k)
+					flag = 1;
+				i++;
+			}
+			if (flag == 1)
+				ans += count;
+			while (i < n && arr[i] > k)
+				i++;
+		}
+		return ans;
+	}
+
+	public static void main(String[] args) {
+
+		int arr[] = { 2, 1, 4, 9, 2, 3, 8, 3, 4 };
+
+		System.out.println(calculateMaxSumLength(arr, arr.length, 4));
+	}
+}
