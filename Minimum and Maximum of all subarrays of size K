@@ -1,0 +1,98 @@
+//Minimum and Maximum of all subarrays of size K
+import java.util.*;
+
+What will be the Time Complexity
+
+public class Array {
+
+	public static void sort(int arr[], int k) {
+
+		for (int i = 0; i <= arr.length - k; i++) {
+
+			int ans[] = new int[k];
+			int p = 0;
+			for (int j = i; j < i + k; j++) {
+				ans[p++] = arr[j];
+			}
+
+			Arrays.sort(ans);
+			System.out.println(ans[0] + " " + ans[k - 1]);
+		}
+	}
+
+	public static void main(String[] args) {
+
+		int arr[] = { 5, 4, 3, 2, 1, 6, 3, 5, 4, 2, 1 };
+		int k = 3;
+		sort(arr, k);
+	}
+}
+[O(n-k)*O(k)*logk]
+
+class SumOfMinimumAndMaximumElementsOfAllSubarraysOfSizeK {
+    
+    private static void sumOfMinMax(int[] arr, int k) {
+        
+        int n = arr.length;
+        int sum = 0;
+        for (int i = 0; i <= n - k; i++) {
+            int min = Integer.MAX_VALUE;
+            int max = Integer.MIN_VALUE;
+        
+            for (int j = i; j < i + k; j++) {
+                min = Math.min(min, arr[j]);
+                max = Math.max(max, arr[j]);
+            }
+       
+            System.out.println(min+" "+max);
+        }
+        
+    }
+
+    public static void main(String[] args) {
+        int arr1[] = new int[]{5, 9, 8, 3, -4, 2, 1, -5};
+        int k1 = 4;
+        System.out.println(sumOfMinMax(arr1, k1));
+    }
+}
+
+Time Complexity = O(n * k)
+Space Complexity = O(1)
+
+
+import java.util.*;
+
+public class Array {
+
+	public static void sort(int arr[], int k) {
+
+		ArrayList<Integer> ans = new ArrayList<Integer>();
+
+		int start = 0;
+		for (int i = 0; i < arr.length; i++) {
+			
+			ans.add(arr[i]);
+			
+			if (ans.size() == k) {
+
+				int max = Integer.MIN_VALUE;
+				int min = Integer.MAX_VALUE;
+				for (int j = 0; j < ans.size(); j++) {
+					if (ans.get(j) > max)
+						max = ans.get(j);
+					if (ans.get(j) < min)
+						min = ans.get(j);
+				}
+				System.out.println(min + " " + max);
+				ans.remove(0);
+			}
+		}
+	}
+
+	public static void main(String[] args) {
+
+		int arr[] = { 5, 4, 3, 2, 1, 6, 3, 5, 4, 2, 1 };
+		int k = 3;
+		sort(arr, k);
+	}
+}
