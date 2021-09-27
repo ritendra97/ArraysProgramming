@@ -33,7 +33,6 @@ public class WaterTrapping
 	{
 		int maxl[]=new int[n];
 		int maxr[]=new int[n];
-		int water[]=new int[n];
 		int sum=0;
 		maxl[0]=nums[0];
 		for(int i=1;i<n;i++)
@@ -47,8 +46,7 @@ public class WaterTrapping
 		}
 		for(int i=0;i<n;i++)
 		{
-			water[i]=(Math.min(maxl[i],maxr[i])-nums[i]);
-			sum=sum+water[i];
+			sum+=(Math.min(maxl[i],maxr[i])-nums[i]);
 		}
 		System.out.println("The sum is: "+sum);
 	}
