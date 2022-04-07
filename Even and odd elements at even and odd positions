@@ -18,6 +18,8 @@ public class Solution
 			int temp=arr[evennumber];
 			arr[evennumber]=arr[oddnumber];
 			arr[oddnumber]=temp;
+		}else{
+			break;
 		}
 		
 	}
