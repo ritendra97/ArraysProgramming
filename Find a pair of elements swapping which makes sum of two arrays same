@@ -1,0 +1,40 @@
+import java.util.HashMap;
+import java.util.Map;
+
+class ArrayProblems{
+
+    static int getSum(int X[], int n)
+    {
+        int sum = 0;
+        for (int i = 0; i < n; i++)
+            sum += X[i];
+        return sum;
+    }
+
+    static void findSwapValues(int A[], int n, int B[], int m)
+    {
+        int sum1 = getSum(A, n);
+        int sum2 = getSum(B, m);
+
+        Map<Integer, Integer> map = new HashMap<Integer,Integer>();
+        
+        for(int i =0;i<B.length;i++){
+            map.put(B[i],1);
+        }
+
+        for(int i = 0;i<A.length;i++){
+            int target = (sum2-sum1)/2+A[i];
+            if(map.containsKey(target)){
+                System.out.println(target+" "+A[i]);
+                return;
+            }
+        }
+    }
+    public static void main(String[] args) {
+        int A[] = { 4, 1, 2, 1, 1, 2 };
+        int n = A.length;
+        int B[] = { 3, 6, 3, 3 };
+        int m = B.length;
+        findSwapValues(A, n, B, m);
+    }
+}
